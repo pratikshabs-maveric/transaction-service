@@ -1,12 +1,15 @@
 package com.maveric.transactionservice.model;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
 @Document(collection = "users")
 public class User {
-    private int uniqueId;
+
+    @Id
+    private int _id;
 
     private String type;
 
@@ -16,12 +19,20 @@ public class User {
 
     private Date createdAt;
 
-    public int getUniqueId() {
-        return uniqueId;
+    public User(int _id, String type, Number amount, String accountId, Date createdAt) {
+        this._id = _id;
+        this.type = type;
+        this.amount = amount;
+        this.accountId = accountId;
+        this.createdAt = createdAt;
     }
 
-    public void setUniqueId(int uniqueId) {
-        this.uniqueId = uniqueId;
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
     }
 
     public String getType() {
@@ -53,14 +64,6 @@ public class User {
     }
 
     public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public User(int uniqueId, String type, Number amount, String accountId, Date createdAt) {
-        this.uniqueId = uniqueId;
-        this.type = type;
-        this.amount = amount;
-        this.accountId = accountId;
         this.createdAt = createdAt;
     }
 }
